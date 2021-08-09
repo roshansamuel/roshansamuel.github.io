@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script type='text/javascript' src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
     <title>Roshan Samuel - Research</title>
 <!--
 Classic Template
@@ -25,6 +27,7 @@ http://www.templatemo.com/tm-488-classic
 
     <body>
        
+<!-- Top header with quick-links to other html pages -->
         <div class="tm-header">
             <div class="container-fluid">
                 <div class="tm-header-inner">
@@ -59,43 +62,193 @@ http://www.templatemo.com/tm-488-classic
                 </div>                                  
             </div>            
         </div>
+<!-- End of top header with quick-links to other html pages -->
 
+
+<!-- Image band at the top of home page -->
         <div class="tm-blog-img-container">
             
         </div>
+<!-- End image band at the top of home page -->
 
         <section class="tm-section">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row tm-2-rows-sm-swap">
+                    <div class="col-xs-12">
+                        <h2 class="tm-gold-text">Research</h3>
+                        <p>
+                        My work is focused on numerical simulation of turbulent flows.
+                        Presently I am working on the development and testing of an open-source finite-difference solver, SARAS.
+                        At the lab where I work, the solver is currently being used to simulate turbulence in Rayleigh-Benard convection (RBC), and rotating flows.
+                        I am also working on a model for Large-Eddy Simulation (LES) as an additional module of SARAS.
+                        </p>
+                    </div>
+                </div>
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="tm-blog-post">
-                            <h3 class="tm-gold-text">Research</h3>
-                            <p>\r&#275-'s&#601rch\ <i>(noun)</i> : a careful or diligent search</p>
-
-                            <img src="img/tm-img-1010x336-1.jpg" alt="Image" class="img-fluid tm-img-post">
-                            
-                            <p>
-                            I have worked on a fair number of research fields, mostly in the 
-                            Praesent velit ante, congue ac dignissim in, vehicula sit amet urna.
-                            Fusce in dapibus quam, eget finibus velit.
-                            Nullam erat odio, vulputate id est ut, consequat rutrum justo.
-                            Vivamus vel leo vel nunc tincidunt mattis.
-                            Sed neque diam, semper suscipit dictum a, sodales ac metus.
-                            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                            </p>
-
-                            <p>Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis. Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis.</p>
-
-                            <p>Quisque vel sem eu turpis ullamcorper euismod. Praesent quis nisi ac augue luctus viverra. Sed et dui nisi. Fusce vitae dapibus justo. Pellentesque accumsan est ac posuere imperdiet. Curabitur eros mi, lacinia at euismod quis, dapibus vel ligula. Ut sodales erat vitae nunc tempor mollis. Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.</p>
-
-                            <p>Sed vitae luctus libero. Nam sem neque, finibus id sem pharetra, cursus porttitor ligula. Praesent aliquam fermentum dui, vitae venenatis libero vulputate ac. Fusce bibendum scelerisque magna eget iaculis. Phasellus non arcu eu sem convallis semper. Duis vulputate dignissim rhoncus.</p>
-                        </div>
-                        
+                <div class="row tm-margin-t-mid">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 class="tm-gold-text">Rayleigh Benard Convection</h3>
+                        <p>
+                        Rayleigh-Benard convection (RBC) uses a deceptively simple setup to demonstrate a rich keleidoscope of fluid phenomena.
+                        From steady laminar flows, to oscillating rolls, to wildly chaotic turbulence, the whole gamut of fluid dynamics can be captured in RBC.
+                        Here, the fluid is confined between two plates - hot plate at the bottom and cold plate at the top.
+                        The engine that drives the flow is buoyancy - the force of gravity pulls the denser, colder fluid from the top.
+                        Simultaneously, the warmer, lighter fluid is displaced from the bottom plate and rise as plumes.
+                        </p>
+                        <p>
+                        The non-dimensional parameter, Rayleigh number, is used to quantify the strength of buoyancy.
+                        Increasing the Rayleigh number tends to drive the convection faster, and therby make the flow more turbulent.
+                        </p>
+                        <p>
+                        To the right is a plot of the temperature field along a vertical cross-section of an RBC simulation.
+                        The flow is evolving at a high Ra of \(4.0 \times 10^9\).
+                        The simulation was performed using SARAS on a 1024<sup>3</sup> grid.
+                        The solver used 4096 cores of the Shaheen II supercomputer at the King Abdullah University of Science (KAUST), Saudi Arabia, to generate this solution.
+                        </p>
+                        <p>
+                        We can easily notice the plumes of hot fluid rising from the bottom, as jets of cold fluid simultaneously fall from the top wall.
+                        The domain is periodic along both the horizontal directions.
+                        </p>
                     </div>
 
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
                 </div>
-                
+
+                <div class="row tm-margin-t-mid">
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 class="tm-gold-text">Large Eddy Simulation</h3>
+                        <p>
+                        The most enduring aspect of turbulence is that it is a multi-scale phenomenon.
+                        In a fully turbulent flow, the fluid swirls around in eddies of a wide range of sizes.
+                        As a result, direct simulations of turbulent flows require very fine grids with billions of grid points.
+                        Large Eddy Simulations relieve this constraint by limiting the finest resolved scales and relying on
+                        mathematical models to predict what happens at the sub-grid scales.
+                        </p>
+                        <p>
+                        One method of predicting the effect of unresolved scales is to use an additional turbulent viscosity.
+                        There exist a wide variety of models to calculate this additional viscosity,
+                        and one such method is to use renormalization group theory to compute a renormalized viscosity.
+                        This method was implemented in the pseudo-spectral code, TARANG.
+                        </p>
+                        <p>
+                        Presently I am using the stretched-spiral vortex model to compute the sub-grid stress in my LES.
+                        This method is being used to simulate RBC at very high Rayleigh numbers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row tm-margin-t-mid">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 class="tm-gold-text">SARAS</h3>
+                        <p>
+                        SARAS is an open-source finite-difference fluid solver written in C++.
+                        The solver is parallelized using MPI and is capable of solving hydrodynamic and convective turbulence.
+                        Thanks to its modular structure, which makes good use of object oriented design,
+                        the solver can be quickly adapted to use custom boundary conditions, initial conditions, and forcing terms.
+                        </p>
+                        <p>
+                        The solver offers 2<sup>nd</sup> order and 4<sup>th</sup> order explicit finite-difference stencils to calculate derivatives.
+                        Moreover, there is the option to choose from 2<sup>nd</sup> order Crank-Nicholson scheme
+                        or 3<sup>rd</sup> order low-storage Runge-Kutta scheme for integration of PDEs.
+                        The stretched spiral vortex LES model described above is also an addon to SARAS.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+                </div>
+
+                <div class="row tm-margin-t-mid">
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 class="tm-gold-text">Compressible Flow Solver</h3>
+                        <p>
+                        During my stint as Project Scientist at the High Performance Computing Lab,
+                        headed by Prof. T. K. Sengupta at the Department of Aerospace Engineering, IIT-Kanpur, I had developed
+                        a 3D compressible flow solver in FORTRAN.
+                        The solver uses the high accuracy Optimized Upwind Compact Scheme-3 (OUCS3) to compute spatial derivatives,
+                        and 4<sup>th</sup> order explicit Runge-Kutta scheme for time-integration.
+                        Moreover, the solver is parallelized using MPI as well.
+                        </p>
+                        <p>
+                        The solver was subsequently upgraded to use non-uniform grid compact schemes,
+                        and used to simulate Rayleigh-Taylor instability.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row tm-margin-t-mid">
+                    <div class="col-xs-12 col-sm-6">
+                        <h3 class="tm-gold-text">Compact Schemes</h3>
+                        <p>
+                        Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien
+                        </p>
+                        <p>
+                        Nulla ultrices nibh ac accumsan lobortis. Nulla facilisi.
+                        Praesent velit ante, congue ac dignissim in, vehicula sit amet urna. Fusce in dapibus quam, eget finibus velit.
+                        Nullam erat odio, vulputate id est ut, consequat rutrum justo. Vivamus vel leo vel nunc tincidunt mattis.
+                        Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tm-section">
+            <div class="container-fluid" id="publications">
+                <div class="row tm-2-rows-sm-swap">
+                    <div class="col-xs-12">
+                        <h2 class="tm-gold-text">Publications</h3>
+                        <p>
+                        Below is a list of my publications in peer-reviewed journals from the research topics listed above.
+                        The full list is also available on my
+                        <a href="https://scholar.google.co.in/citations?user=LLwzMe8AAAAJ" target="_blank">Google Scholar</a> page.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- When updating publications, the below script can temporarily generate an ugly list. -->
+                <!-- First update publications.bib in IITK home folder. Uncomment below script. Copy the list, paste below, and comment the script out out -->
+                <!--<script src="https://bibbase.org/show?bib=https%3A%2F%2Fhome.iitk.ac.in%2F%7Eroshanj%2Fpublications.bib&commas=true&jsonp=1"></script>-->
+                <div class="row tm-2-rows-sm-swap">
+                    <div class="col-xs-12">
+                        <ol>
+                            <li>
+                                Role of non-zero bulk viscosity in three-dimensional Rayleigh-Taylor instability: Beyond Stokes’ hypothesis. Sengupta, A., <b>Samuel, R. J.</b>, Sundaram, P., & Sengupta, T. K. <i>Computers & Fluids</i>, 225: 104995. 2021.
+                            </li>
+                            <li>
+                                Challenges in Fluid Flow Simulations Using Exascale Computing. Verma, M. K., <b>Samuel, R.</b>, Chatterjee, S., Bhattacharya, S., & Asad, A. <i>SN Computer Science</i>, 1(3): 178. May 2020.
+                            </li>
+                            <li>
+                                Large eddy simulation of hydrodynamic turbulence using renormalized viscosity. Vashishtha, S., <b>Samuel, R.</b>, Chatterjee, A. G., Samtaney, R., & Verma, M. K. <i>Physics of Fluids</i>, 31(6): 065102. 2019.
+                            </li>
+                            <li>
+                                Enstrophy transfers in helical turbulence. Sadhukhan, S., <b>Samuel, R.</b>, Plunian, F., Stepanov, R., Samtaney, R., & Verma, M. K. <i>Phys. Rev. Fluids</i>, 4: 084607. Aug 2019.
+                            </li>
+                            <li>
+                                Large-eddy simulations of turbulent thermal convection using renormalized viscosity and thermal diffusivity. Vashishtha, S., Verma, M. K., & <b>Samuel, R.</b> <i>Phys. Rev. E</i>, 98: 043109. Oct 2018.
+                            </li>
+                            <li>
+                                Hybrid sixth order spatial discretization scheme for non-uniform Cartesian grids. Sharma, N., Sengupta, A., Rajpoot, M., <b>Samuel, R. J.</b>, & Sengupta, T. K. <i>Computers & Fluids</i>, 157: 208-231. 2017.
+                            </li>
+                        </ol> 
+                    </div>
+                </div>
             </div>
         </section>
         
@@ -138,6 +291,7 @@ http://www.templatemo.com/tm-488-classic
                             <ul class="nav">
                                 <li><a href="https://www.iitk.ac.in/" target="_blank" class="tm-footer-link">IITK Homepage</a></li>
                                 <li><a href="https://www.iitk.ac.in/me/" target="_blank" class="tm-footer-link">ME Department</a></li>
+                                <li><a href="https://turbulencehub.org/" target="_blank" class="tm-footer-link">Lab Website</a></li>
                                 <li><a href="https://scholar.google.co.in/citations?user=LLwzMe8AAAAJ" target="_blank" class="tm-footer-link">Google Scholar</a></li>
                                 <li><a href="https://github.com/roshansamuel" target="_blank" class="tm-footer-link">GitHub</a></li>
                             </ul>
