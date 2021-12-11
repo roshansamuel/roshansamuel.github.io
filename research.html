@@ -92,12 +92,12 @@ http://www.templatemo.com/tm-488-classic
                         Rayleigh-Benard convection (RBC) uses a deceptively simple setup to demonstrate a rich keleidoscope of fluid phenomena.
                         From steady laminar flows, to oscillating rolls, to wildly chaotic turbulence, the whole gamut of fluid dynamics can be captured in RBC.
                         Here, the fluid is confined between two plates - hot plate at the bottom and cold plate at the top.
-                        The engine that drives the flow is buoyancy - the force of gravity pulls the denser, colder fluid from the top.
-                        Simultaneously, the warmer, lighter fluid is displaced from the bottom plate and rise as plumes.
+                        Buoyancy is the engine that drives the flow - the force of gravity pulls the denser, colder fluid from the top,
+                        while the warmer, lighter fluid displaced from the bottom plate rise as plumes.
                         </p>
                         <p>
                         The non-dimensional parameter, Rayleigh number, is used to quantify the strength of buoyancy.
-                        Increasing the Rayleigh number tends to drive the convection faster, and therby make the flow more turbulent.
+                        Increasing the Rayleigh number tends to drive the convection faster, and thereby make the flow more turbulent.
                         </p>
                         <p>
                         To the right is a plot of the temperature field along a vertical cross-section of an RBC simulation.
@@ -118,15 +118,15 @@ http://www.templatemo.com/tm-488-classic
 
                 <div class="row tm-margin-t-mid">
                     <div class="col-xs-12 col-sm-6">
-                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                        <img src="resources/sarasLES.png" alt="Image" class="img-fluid tm-img-post">
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">Large Eddy Simulation</h3>
                         <p>
-                        The most enduring aspect of turbulence is that it is a multi-scale phenomenon.
+                        The most enduring aspect of turbulence is its multi-scale nature.
                         In a fully turbulent flow, the fluid swirls around in eddies of a wide range of sizes.
-                        As a result, direct simulations of turbulent flows require very fine grids with billions of grid points.
+                        As a result, direct simulations of turbulent flows require very fine grids with millions of grid points.
                         Large Eddy Simulations relieve this constraint by limiting the finest resolved scales and relying on
                         mathematical models to predict what happens at the sub-grid scales.
                         </p>
@@ -137,7 +137,7 @@ http://www.templatemo.com/tm-488-classic
                         This method was implemented in the pseudo-spectral code, TARANG.
                         </p>
                         <p>
-                        Presently I am using the stretched-spiral vortex model to compute the sub-grid stress in my LES.
+                        Presently I am using the stretched-spiral vortex model to compute the sub-grid stress.
                         This method is being used to simulate RBC at very high Rayleigh numbers.
                         </p>
                     </div>
@@ -149,8 +149,8 @@ http://www.templatemo.com/tm-488-classic
                         <p>
                         SARAS is an open-source finite-difference fluid solver written in C++.
                         The solver is parallelized using MPI and is capable of solving hydrodynamic and convective turbulence.
-                        Thanks to its modular structure, which makes good use of object oriented design,
-                        the solver can be quickly adapted to use custom boundary conditions, initial conditions, and forcing terms.
+                        Thanks to its modular structure, which makes use of object oriented design,
+                        the solver can be readily adapted to use custom boundary conditions, initial conditions, and forcing terms.
                         </p>
                         <p>
                         The solver offers 2<sup>nd</sup> order and 4<sup>th</sup> order explicit finite-difference stencils to calculate derivatives.
@@ -158,31 +158,38 @@ http://www.templatemo.com/tm-488-classic
                         or 3<sup>rd</sup> order low-storage Runge-Kutta scheme for integration of PDEs.
                         The stretched spiral vortex LES model described above is also an addon to SARAS.
                         </p>
+                        <p>
+                        The solver is available for download on 
+                        <a href="https://github.com/roshansamuel/saras" target="_blank">GitHub</a>,
+                        and a brief description of its capabilities is available in this 
+                        <a href="https://joss.theoj.org/papers/10.21105/joss.02095" target="_blank">paper</a> at the Journal of Open Source Software.
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                        <img src="resources/sarasSpectrum.png" alt="Image" class="img-fluid tm-img-post">
                     </div>
                 </div>
 
                 <div class="row tm-margin-t-mid">
                     <div class="col-xs-12 col-sm-6">
-                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                        <img src="resources/rtiFortran.png" alt="Image" class="img-fluid tm-img-post">
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">Compressible Flow Solver</h3>
                         <p>
-                        During my stint as Project Scientist at the High Performance Computing Lab,
-                        headed by Prof. T. K. Sengupta at the Department of Aerospace Engineering, IIT-Kanpur, I had developed
+                        During my stint as Project Scientist at the High Performance Computing Lab (HPCL)
+                        at the Department of Aerospace Engineering, IIT-Kanpur, I developed
                         a 3D compressible flow solver in FORTRAN.
                         The solver uses the high accuracy Optimized Upwind Compact Scheme-3 (OUCS3) to compute spatial derivatives,
-                        and 4<sup>th</sup> order explicit Runge-Kutta scheme for time-integration.
+                        and an optimized three-stage Runge-Kutta scheme for time-integration.
                         Moreover, the solver is parallelized using MPI as well.
                         </p>
                         <p>
-                        The solver was subsequently upgraded to use non-uniform grid compact schemes,
-                        and used to simulate Rayleigh-Taylor instability.
+                        <a href="https://www.sciencedirect.com/science/article/pii/S0045793021001614" target="_blank">
+                        The solver was then used to simulate Rayleigh-Taylor instability</a>.
+                        Here, the evolution of vorticity at the interface of two fluids - denser fluid at top,
+                        and lighter fluid at bottom - is shown.
                         </p>
                     </div>
                 </div>
@@ -191,19 +198,32 @@ http://www.templatemo.com/tm-488-classic
                     <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">Compact Schemes</h3>
                         <p>
-                        Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien
+                        Compact schemes are finite-difference schemes that offer very high, spectral-like accuracy.
+                        In numerical simulations of fluid flows, we often have a field (velocity, temperature, pressure, etc.) whose derivative must be computed.
+                        Let the field be \(f\), denoted by \(f_i\) at the point \(i\) in the grid.
+                        Most finite-difference schemes compute the derivative \(f'_i = \frac{\partial f}{\partial x}\bigr|_i\) using the values of \(f\) at \(i\) and neighbouring grid points - \(f_i\), \(f_{i\pm1}\), etc.
                         </p>
+                        $$
+                        f'_i = \frac{f_{i+1} - f_{i-1}}{2\Delta x} = \frac{1}{\Delta x}\left(p_{-1}f_{i-1} + p_{+1}f_{i+1}\right)
+                        $$
                         <p>
-                        Nulla ultrices nibh ac accumsan lobortis. Nulla facilisi.
-                        Praesent velit ante, congue ac dignissim in, vehicula sit amet urna. Fusce in dapibus quam, eget finibus velit.
-                        Nullam erat odio, vulputate id est ut, consequat rutrum justo. Vivamus vel leo vel nunc tincidunt mattis.
-                        Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id.
+                        The above formula computes derivatives explicitly at each point.
+                        However, compact schemes use an implicit equation to compute derivatives everywhere in the domain.
+                        </p>
+                        $$
+                        \alpha_{-1}f'_{i-1} + \alpha_{0}f'_{0} + \alpha_{+1}f'_{i+1} = \frac{1}{\Delta x}\left(p_{-1}f_{i-1} + p_{0}f_{0} + p_{+1}f_{i+1}\right)
+                        $$
+                        <p>
+                        The set of implicit equations defined at every point in the domain will form a set of linear equations.
+                        The equations can be represented as a banded matrix that can be solved iteratively.
+                        I worked on the implementation and testing of 
+                        <a href="https://www.sciencedirect.com/science/article/pii/S0045793017303225" target="_blank">
+                        compact schemes for non-uniform grids</a>.
                         </p>
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <img src="resources/rbcImage.png" alt="Image" class="img-fluid tm-img-post">
+                        <img src="resources/nucsLDC.png" alt="Image" class="img-fluid tm-img-post">
                     </div>
                 </div>
             </div>
@@ -228,6 +248,9 @@ http://www.templatemo.com/tm-488-classic
                 <div class="row tm-2-rows-sm-swap">
                     <div class="col-xs-12">
                         <ol>
+                            <li>
+                                SARAS: A general-purpose PDE solver for fluid dynamics. <b>Samuel, R.</b>, Bhattacharya, S., Asad, A., Chatterjee, S., Verma, M. K., Samtaney, R., & Anwer, S. F. <i>J. Open Source Softw.</i>, 6(64): 2095. 2021.
+                            </li>
                             <li>
                                 Role of non-zero bulk viscosity in three-dimensional Rayleigh-Taylor instability: Beyond Stokes’ hypothesis. Sengupta, A., <b>Samuel, R. J.</b>, Sundaram, P., & Sengupta, T. K. <i>Computers & Fluids</i>, 225: 104995. 2021.
                             </li>
