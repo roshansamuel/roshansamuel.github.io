@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script type='text/javascript' src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
     <title>Roshan Samuel - Projects</title>
 <!--
 Classic Template
@@ -76,7 +78,7 @@ http://www.templatemo.com/tm-488-classic
                         <h2 class="tm-gold-text">Projects</h3>
                         <p>
                         Python is an amazing and versatile language to transform any idea into working code.
-                        Be it testing algorithms for intersting games and thought experiments, visualizing data,
+                        Be it testing algorithms for interesting games and thought experiments, visualizing data,
                         creating a graphical user interface (GUI), or creating a simple database management system, Python is my go-to tool.
                         These are a few short projects I worked on with this wonderful language.
                         </p>
@@ -94,7 +96,7 @@ http://www.templatemo.com/tm-488-classic
                         It also provided great insight into designing a simple and intuitive GUI for the code.
                         </p>
                         <p>
-                        It uses PyQt5 to create its main and console windows.
+                        I used PyQt5 to create its main and console windows.
                         Python's versatile matplotlib generates the plots as the solver concludes.
                         Being a lightweight multigrid solver, the application is called MG-Lite, and is available on my
                         <a href="https://github.com/roshansamuel/mg-lite" target="_blank">
@@ -108,26 +110,76 @@ http://www.templatemo.com/tm-488-classic
                 </div>
                 
                 <div class="row tm-margin-t-mid">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/lowDimModes.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">Low-Dimensional Models</h3>
-                        <p>Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-                        <p>Nulla ultrices nibh ac accumsan lobortis. Nulla facilisi. Praesent velit ante, congue ac dignissim in, vehicula sit amet urna. Fusce in dapibus quam, eget finibus velit. Nullam erat odio, vulputate id est ut, consequat rutrum justo. Vivamus vel leo vel nunc tincidunt mattis. Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat. Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id.</p>
+                        <p>
+                        When one looks at the spectrum of a turbulent flow field by taking its Fourier transform,
+                        it is readily seen that the energy of the flow is distributed across many wavenumbers, or modes.
+                        However, when the flow is laminar, or poised at the incipient stages of instability,
+                        certain Fourier modes are more dominant, i.e., they contain most of the energy.
+                        By studying the evolution of these dominant modes, it is possible to predict the growth and decay of instabilities
+                        in the flow.
+                        </p>
+                        <p>
+                        Using a versatile Fourier basis named Craya-Herring basis (taught by Prof. M. K. Verma in his course
+                        <a href="https://sites.google.com/view/mahendra-verma/teaching/physics-of-turbulence" target="_blank">
+                        Physics of Turbulence</a> at IIT-K), one can quickly derive the governing equations of a handful of modes.
+                        Here, the evolution of certain velocity and temperature modes are shown for rotating Rayleigh-B&eacute;nard convection.
+                        </p>
                     </div>
                 </div>
 
                 <div class="row tm-margin-t-mid">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">3D Vision with Python</h3>
-                        <p>Vivamus vel leo vel nunc tincidunt mattis. Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat.</p>
-                        <p>Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis. Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis.</p>
+                        <p>
+                        Our eyes perceive the world in 3D using the visual input from both the eyes.
+                        The small difference in points of view from the two eyes is used by the brain to place objects at different distances.
+                        Thus, using two images of the same object taken from two slightly different points of view, one can mimic this effect.
+                        This is the principle behind <a href="https://en.wikipedia.org/wiki/Stereoscopy" target="_blank">stereoscopy</a>.
+                        </p>
+                        <p>
+                        In this image, there are two 3D views of a circularly polarized wave, each taken from two slightly different angles.
+                        This is done by adjusting the azimuthal angle of the view in Python's matplotlib.
+                        This was subsequently animated by continuously rotating the camera around the wave.
+                        When this animation is played on a 3D monitor with accompanying 3D glasses, it produces a convincing illusion of depth.
+                        </p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/stereoView.png" alt="Image" class="img-fluid tm-img-post">
                     </div>
                 </div>
 
                 <div class="row tm-margin-t-mid">
-                    <div class="col-xs-12">
+                    <div class="col-xs-12 col-sm-6">
+                        <img src="resources/conwayGame.png" alt="Image" class="img-fluid tm-img-post">
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
                         <h3 class="tm-gold-text">Conway's Game</h3>
-                        <p>Vivamus vel leo vel nunc tincidunt mattis. Sed neque diam, semper suscipit dictum a, sodales ac metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi vel pharetra massa, non iaculis tortor. Nulla porttitor tincidunt felis et feugiat.</p>
-                        <p>Vivamus fermentum ligula justo, sit amet blandit nisl volutpat id. Fusce sagittis ultricies felis, non luctus mauris lacinia quis. Ut fringilla lacus ac tempor ullamcorper. Mauris iaculis placerat ex et mattis.</p>
+                        <p>
+                        <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">
+                        Conway's Game of Life</a> is a captivating numerical experiment to observe the evolution of cellular automata.
+                        We start with an \(m \times n\) grid of cells, some of which are alive, while the rest are dead.
+                        Using a set of 3 simple rules, one can numerically step through each generation of the cells.
+                        <ol>
+                            <li> Any live cell with 2 or 3 live neighbours will stay alive </li>
+                            <li> Any dead cell with 3 live neighbours will become alive </li>
+                            <li> All other cells will die or remain dead </li>
+                        </ol>
+                        </p>
+                        <p>
+                        I use the FuncAnimation() function from the animation class of Python's matplotlib module to see the growth and decline of cells,
+                        starting from a given initial configuration.
+                        On the right is one of the intermediate configurations during one such experiment.
+                        All yellow cells are alive, while the purple ones are dead.
+                        It is hard to predict how the cells will evolve - sometimes they die off en masse, other times they cycle through states endlessly in a loop.
+                        </p>
                     </div>
                 </div>
 
@@ -136,8 +188,7 @@ http://www.templatemo.com/tm-488-classic
                         <h3 class="tm-gold-text">Project Euler</h3>
                         <p>
                         <a href="https://projecteuler.net/" target="_blank">
-                        Project Euler</a>
-                        is a brilliant collection of some truly challenging programming problems.
+                        Project Euler</a> is a brilliant collection of some truly challenging programming problems.
                         Each problem tackles an interesting math problem (usually from number theory or geometry).
                         For instance, <a href="https://projecteuler.net/problem=144" target="_blank">Problem 144</a>
                         tracks a beam of light as it reflects multiple times through an elliptical mirrored cavity (a white cell).
