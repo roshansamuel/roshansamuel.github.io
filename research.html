@@ -125,16 +125,18 @@ http://www.templatemo.com/tm-488-classic
                         <h3 class="tm-gold-text">Large Eddy Simulation</h3>
                         <p>
                         The most enduring aspect of turbulence is its multi-scale nature.
-                        In a fully turbulent flow, the fluid swirls around in eddies of a wide range of sizes.
-                        As a result, direct simulations of turbulent flows require very fine grids with millions of grid points.
+                        In fully turbulent flows, the fluid swirls around in eddies of a wide range of sizes.
+                        As a result, direct simulations of such flows require very fine grids with millions of grid points.
                         Large Eddy Simulations relieve this constraint by limiting the finest resolved scales and relying on
                         mathematical models to predict what happens at the sub-grid scales.
                         </p>
                         <p>
                         One method of predicting the effect of unresolved scales is to use an additional turbulent viscosity.
-                        There exist a wide variety of models to calculate this additional viscosity,
+                        There exists a wide variety of models to calculate this additional viscosity,
                         and one such method is to use renormalization group theory to compute a renormalized viscosity.
-                        This method was implemented in the pseudo-spectral code, TARANG.
+                        This method was implemented in the pseudo-spectral code, TARANG, and used to simulate both
+                        <a href="https://aip.scitation.org/doi/full/10.1063/1.5096335" target="_blank">hydrodynamic</a> and
+                        <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.043109" target="_blank">convective</a> turbulence.
                         </p>
                         <p>
                         Presently I am using the stretched-spiral vortex model to compute the sub-grid stress.
@@ -326,7 +328,7 @@ http://www.templatemo.com/tm-488-classic
 
                 <div class="row">
                     <div class="col-xs-12 tm-copyright-col">
-                        <p class="tm-copyright-text">Copyright 2016 Roshan Samuel</p>
+                        <p class="tm-copyright-text">Copyright 2021 Roshan Samuel</p>
                     </div>
                 </div>
             </div>
