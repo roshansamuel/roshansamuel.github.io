@@ -152,9 +152,13 @@ http://www.templatemo.com/tm-488-classic
                         <p>
                         In Python, this equation can be written as a simple function as below:
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/blasiusODE.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    def blasiusEqn(eta, y):
+        f, g, h = y
+        return g, h, -h*f/2
+
+</pre>
                         <p>
                         This is an example of a non-autonomous ODE, since the variable of differentiation, \(\eta\) does not appear in the equations.
                         However, for the ODE solving functions of SciPy module to be used later, the variable of differentiation must also be defined as an argument of the function.
@@ -176,23 +180,47 @@ http://www.templatemo.com/tm-488-classic
                         After solving, we check the value of <code>g</code> (which is <code>y[1]</code> since we packed <code>f</code>, <code>g</code> and <code>h</code>
                         into a single variable <code>y</code>) and see how close it is to the expected value of 1 at infinity.
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/blasiusFSolve.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    import scipy.integrate as integrate
+
+    def findh0(h0):
+        f0, g0 = 0, 0
+        initVals = np.array([f0, g0, h0], dtype=object)
+        res = integrate.RK45(blasiusEqn, 0, initVals, 100)
+        for i in range(100):
+            res.step()
+
+        return 1 - res.y[1]
+
+</pre>
                         <p>
-                        Note that the function subtracts 1 from the value of <code>y[1]</code> so that it will output 0 when we pass it the correct value of <code>h0</code>.
+                        Note that the function subtracts 1 from the value of <code>res.y[1]</code> (aka \(f'(\infty)\)) so that with the correct value of <code>h0</code> when \(f'(\infty) = g = 1\), the code will output 0.
                         Let us now test the above function by passing a series of possible values for <code>h0</code>, that is, \(f''(0)\).
                         We will pass 9 values from 0.1 to 0.9, at increments of 0.1 in a <code>for</code> loop as below:
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/blasiusH0Find.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    for i in range(1, 10):
+        print(i/10, findh0(i/10))
+
+</pre>
                         <p>
                         When we run the above code, we get the following output:
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/blasiusTryH0.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    0.1 0.5506351233427067
+    0.2 0.2866459873213928
+    0.3 0.06532864818390183
+    0.4 -0.13224447107866233
+    0.5 -0.3138520833820062
+    0.6 -0.4836714704127618
+    0.7 -0.6442724624772207
+    0.8 -0.7973778017977666
+    0.9 -0.9442182127881427
+
+</pre>
                         <p>
                         We see that somewhere between 0.3 and 0.4, the output of the function changes sign from positive to negative!
                         This is close to the expected value of 0.332, and we must now try to get this value using a non-linear solver.
@@ -201,18 +229,54 @@ http://www.templatemo.com/tm-488-classic
                         and an initial guessed value, for which we choose 0.3, since we just found that to be pretty close to the root of the function.
                         Thus we find the expected value with just a one-line code.
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/printH0.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    import scipy.optimize as optimize
+
+    h0 = optimize.fsolve(findh0, 0.3)
+    print(h0[0])
+
+</pre>
                         <p>
                         This will very nicely print the expected value of <code>h0</code> as 0.332 which is indeed the expected value.
-                        Putting it all together, we can now solve the Blasius equation with a short Python code:
+                        Putting it all together, we can now solve the Blasius equation and plot the resulting velocity profile with a short Python code:
                         </p>
-                        <div class="col-xs-12">
-                            <img src="resources/blasiusMain.png" alt="Image" class="img-fluid tm-img-post">
-                        </div>
+<pre>
+
+    import matplotlib.pyplot as plt
+
+    def blasius():
+        f0, g0 = 0, 0
+        h0 = optimize.fsolve(findh0, 0.3)
+        initVals = np.array([f0, g0, h0], dtype=object)
+        res = integrate.solve_ivp(blasiusEqn, (0, 10), initVals, max_step=0.01)
+
+        eta = res.t
+        g = res.y[1]
+
+        # Now plot the profile
+        fig = plt.figure(figsize=(7.5, 9))
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.plot(g, eta, linewidth=3, color='r')
+
+        ax.set_xlim(0, 1.2)
+        ax.set_ylim(0, 10)
+        ax.set_xlabel(r"$f'$", fontsize=35)
+        ax.set_ylabel(r"$\eta$", fontsize=35)
+        ax.tick_params(axis='both', which='major', labelsize=30)
+
+        plt.tight_layout()
+        plt.show()
+
+    blasius()
+
+</pre>
                         <p>
-                        Finally we plot the <code>f</code> computed above against <code>eta</code> to finally see Blasius profile in the flesh.
+                        Two things to note in the above code are that (a) we use the function <code>solve_ivp</code> instead of <code>RK45</code> because it gives finer control
+                        on the spacing of points in the final result so that we get a neat-looking plot, and (b) we are actually plotting \(g = f'(\eta)\) because \(f\) is merely
+                        the non-dimensional stream-function. The actual velocity profile is given by its derivative.
+                        Finally we see Blasius profile in the flesh:
                         <div class="col-xs-12">
                             <img src="resources/blProfile.png" alt="Image" class="img-fluid tm-img-post">
                         </div>

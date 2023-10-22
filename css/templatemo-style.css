@@ -204,6 +204,7 @@ h4 {
 
 hr { border-top: 1px solid #CCCCCC; }
 p { line-height: 1.9; }
+pre, code { background-color: #eef }
 
 .tm-gray-bg { 
 	background-color: #CCCCCC; 
