@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Roshan Samuel - About</title>
+    <script type='text/javascript' src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+    <title>Roshan Samuel - Projects</title>
 <!--
 Classic Template
 http://www.templatemo.com/tm-488-classic
@@ -49,7 +51,7 @@ http://www.templatemo.com/tm-488-classic
                                 <li class="nav-item">
                                     <a href="projects.html" class="nav-link">Projects</a>
                                 </li>
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a href="about.html" class="nav-link">About</a>
                                 </li>
                             </ul>                        
@@ -64,93 +66,66 @@ http://www.templatemo.com/tm-488-classic
 
 
 <!-- Image band at the top of home page -->
-        <div class="tm-contact-img-container">
+        <div class="tm-about-img-container">
             
         </div>
 <!-- End image band at the top of home page -->
 
         <section class="tm-section">
             <div class="container-fluid">
-                <div class="row tm-margin-t-big">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                        <div class="tm-2-col-left">
-                            
-                            <a href="resources/Roshan_Samuel_CV.pdf">
-                                <h3 class="tm-gold-text tm-title">Curriculum Vitae</h3>
-                            </a>
-                            <object data="resources/Roshan_Samuel_CV.pdf" width="800" height="500">
-                            </object>
-
+                <div class="row tm-2-rows-sm-swap">
+                    <div class="col-xs-12">
+                        <h2 class="tm-gold-text">Pretty printing file-write times</h3>
+                        <p>
+                        Computational physics solvers often output solution files periodically.
+                        Computational fluid dynamics codes, for instance, dumps the velocity, pressure, and other field data at regular intervals.
+                        More often than not, these codes are run on large clusters with job schedulers that allocate fixed periods of times, called wall-times, to each run.
+                        In such a scenario, I find it extremely helpful to know what is the time taken between the file-write events to get a grasp on questions like:
+                        <ul>
+                            <li> how many files I can expect during the run?</li>
+                            <li> when will the next file be written?</li>
+                            <li> is the remaining wall-time enough for the next file to be written?</li>
+                        </ul>
+                        It is with this purpose in mind that I wrote a simple Python app - <a href="https://github.com/roshansamuel/ftdprint" target="_blank">ftdPrint</a>,
+                        which stands for "file time-difference printer".
+                        </p>
+                        <p>
+                        Take for example the <a href="https://github.com/Nek5000/nekRS" target="_blank">NekRS</a> solver, which writes its solution files in <code>*0.f0*</code> format.
+                        During the course of a run, it will generate a number of these files and listing at the command line produces an output like below:
+                        </p>
+                        <div class="col-xs-12">
+                            <img src="resources/ftdp_fileList.png" alt="Image" class="img-fluid tm-img-post">
                         </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-
-                        <div class="tm-2-col-right">
-
-                            <h3 class="tm-gold-text tm-title tm-margin-b-30">Blog Posts</h3>
-                            <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <div class="media tm-related-post">
-                                        <!--
-                                        <div class="media-left media-middle">
-                                        <a href="grid.html">
-                                            <img class="media-object" src="img/tm-img-240x120-1.jpg" alt="Generic placeholder image">
-                                        </a>
-                                        </div>
-                                        -->
-                                        <div class="media-body">
-                                        <a href="grid.html"><h4 class="media-heading tm-gold-text tm-margin-b-15">Tangent-Hyperbolic Grid</h4></a>
-                                        <p class="tm-small-font tm-media-description">Tangent-hyperbolic grids are commonly used in finite-difference solvers for non-uniform grids.</p>
-                                        </div>
-                                    </div>
-                                    <div class="media tm-related-post">
-                                        <!--
-                                        <div class="media-left media-middle">
-                                        <a href="blasius.html">
-                                            <img class="media-object" src="img/tm-img-240x120-2.jpg" alt="Generic placeholder image">
-                                        </a>
-                                        </div>
-                                        -->
-                                        <div class="media-body">
-                                        <a href="blasius.html"><h4 class="media-heading tm-gold-text tm-margin-b-15">Blasius Profile</h4></a>
-                                        <p class="tm-small-font tm-media-description">Blasius profile is a well known result in boundary layer theory. How to obtain it numerically?</p>
-                                        </div>
-                                    </div>
-                                    <div class="media tm-related-post">
-                                        <!--
-                                        <div class="media-left media-middle">
-                                        <a href="#">
-                                            <img class="media-object" src="img/tm-img-240x120-3.jpg" alt="Generic placeholder image">
-                                        </a>
-                                        </div>
-                                        -->
-                                        <div class="media-body">
-                                        <a href="ftdprint.html"><h4 class="media-heading tm-gold-text tm-margin-b-15">Timestap Difference Evaluator</h4></a>
-                                        <p class="tm-small-font tm-media-description">An easy way to evaluate file output intervals of CFD codes and predict the next file-write.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>    
-
+                        <p>
+                        Now of course, one can look at the time-stamps, calculate the time taken between the files, and extrapolate the times at which future files will be written.
+                        I found myself doing this so often that it felt easier to delegate this task to a Python script to interact with the shell and do this calculation for me.
+                        </p>
+                        <p>
+                        The Python script uses the <code>subprocess</code> module to issue a <code>stat</code> command to the shell and decode the output into a list.
+                        The <code>datetime</code> module is used to parse the time-stamps of the files and perform necessary manipulations.
+                        Furthermore, a feeble attempt is made to handle outliers in the list by using the <code>numpy</code> module to filter out wildly varying time-differences.
+                        This is done by considering values only within three standard deviations from the mean value.
+                        </p>
+                        <p>
+                        Using the script requires no "installation" as such.
+                        Merely download the Python script file (named ftdPrint), make it an executable, and save it in a location accessible by the <code>$PATH</code> environment variable.
+                        Since my solution files in the example above are of the format <code>rbc0.f0*</code>,
+                        running the command <code>ftdPrint rbc0.f0*</code> gives a neat list like below:
+                        </p>
+                        <div class="col-xs-12">
+                            <img src="resources/ftdp_output.png" alt="Image" class="img-fluid tm-img-post">
                         </div>
-                        
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
-
-                        <section class="tm-margin-t-mid tm-map-section">
-                            <h3 class="tm-gold-text tm-form-title">Contact</h3>
-
-                            <div id="google-map"></div>
-
-                            <p class="tm-form-description">I work with the Fluid Dynamics Group of the Mechanical Engineering Department of TU-Ilmenau.</p>
-
-                            <p class="m-b-0">E-mail: roshan-john.samuel@tu-ilmenau.de</p>
-
-                        </section>                        
+                        <p>
+                        As a cherry on the cake, the script predicts the time at which the next file can be expected,
+                        allowing me to judge if the wall-time of the running job will be exceeded before the next file is written.
+                        If so, I can kill the job early and save a few corehours.
+                        After all, when it comes to high-performance computing,
+                        few things are as aggravating as seeing the job being killed just minutes before a solution file dump.
+                        As always, the script is available on my GitHub page <a href="https://github.com/roshansamuel/ftdprint" target="_blank">here</a>.
+                        </p>
+                        <p>
+                        Happy computing!! :)
+                        </p>
                     </div>
                 </div>
 
@@ -218,50 +193,5 @@ http://www.templatemo.com/tm-488-classic
         <script src="js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
         <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h --> 
         <script src="js/bootstrap.min.js"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->
-        <script>     
-       
-            /* Google map
-            ------------------------------------------------*/
-            var map = '';
-            var center;
-
-            function initialize() {
-                var mapOptions = {
-                    zoom: 16,
-                    center: new google.maps.LatLng(50.68278476770439, 10.933583769214955),
-                    scrollwheel: false
-                };
-            
-                map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
-
-                google.maps.event.addDomListener(map, 'idle', function() {
-                  calculateCenter();
-                });
-            
-                google.maps.event.addDomListener(window, 'resize', function() {
-                  map.setCenter(center);
-                });
-            }
-
-            function calculateCenter() {
-                center = map.getCenter();
-            }
-
-            function loadGoogleMap(){
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
-                document.body.appendChild(script);
-            }
-        
-            // DOM is ready
-            $(function() {
-
-                // Google Map
-                loadGoogleMap();
-            });
-
-        </script>             
-
 </body>
 </html>
