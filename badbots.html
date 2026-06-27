@@ -114,7 +114,7 @@ http://www.templatemo.com/tm-488-classic
 <pre>
     sudo systemctl restart ssh
 </pre>
-                        This effectively cuts down the probability of success for half the attempts made by bots.
+                        This effectively cuts down a large portion of the attacks from the bots.
                         </p>
 
                         <h3 class="tm-gold-text">2. Change the SSH listening port</h3>
@@ -167,7 +167,8 @@ http://www.templatemo.com/tm-488-classic
     sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 </pre>
                         <p>
-                        The tool automatically takes into account the options in the <code>jail.local</code> file when running.
+                        The tool automatically takes into account the options in the <code>jail.local</code> file
+                        (along with the contents of <code>jail.conf</code>) when running.
                         This configuration file is composed of list of sections and the property key-value pairs listed under different section headings.
                         The relevant edits to the file must be made under the <code>[sshd]</code> section.
                         Make sure that only one such section exists uncommented, and all the changes are made within that section only.
@@ -180,6 +181,7 @@ http://www.templatemo.com/tm-488-classic
     findtime = 10m 
     bantime  = 1w
     logpath = %(sshd_log)s
+    backend = %(sshd_backend)s
 </pre>
                         <p>
                         Note that the <code>port</code> entry must be the same port number as the one changed to in the previous step.
@@ -236,11 +238,11 @@ http://www.templatemo.com/tm-488-classic
                         </p>
 
                         <p>
-                        Most services which use SSH encourage users to store a passkey instead of using passwords.
+                        Most services which use SSH encourage users to store a public key instead of using passwords.
                         For example, GitHub disabled password-based push/pull to its repositories over SSH as it is less secure.
-                        Modern supercomputers also provide access to users through stored passkeys only.
+                        Modern supercomputers also provide access to users through stored keys only.
                         Obviously, an apparent disadvantage here is that one is restricted to being able to log in
-                        only from a system whose passkey is already stored in the remote machine.
+                        only from a system whose public key is already stored in the remote machine.
                         If you have to login from a new system, you have to register it with the remote machine by transmitting its public key first.
                         </p>
 
@@ -291,7 +293,7 @@ http://www.templatemo.com/tm-488-classic
     PasswordAuthentication no
     PubkeyAuthentication yes
     AuthenticationMethods publickey
-    ChallengeResponseAuthentication no
+    KbdInteractiveAuthentication no
 </pre>
                         <p>
                         Once again, the SSH service has to be restarted as described in previous steps.
